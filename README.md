@@ -51,7 +51,7 @@
 2. 给div容器设置一个高度（跟img的高度一样），img的高度设置为100%.
 3. 给div容器设置font-size：0；消除空字符串的影响。
 
-## DAY10 
+## DAY10 页面要求
 ### 2023/8/23
 **笔记**
 
@@ -59,3 +59,90 @@
 2. margin和padding区别。
 3. 高度出现问题：检查空白字符影响；line-height设置。
 4. 标签、样式要精简，去掉没用的。
+
+## DAY12 居中
+### 2023/8/25
+**笔记**
+
+1. 导航栏居中
+
+
+2. 使用flex布局给盒子a设置space-between（如何撑开？）：
+   - 直接给盒子a设置一个宽度。
+   - 给总的container设置宽度，再给盒子a加上`flex:1 1;`
+  
+3. 放置背景图：
+```html
+<div class="container">
+    <div class="pic"> 
+        <a>这里放图片</a>
+    </div>    
+</div>
+```
+```css
+.container {
+    position: relative;
+    height: px;
+    width:  px;
+}
+
+.pic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    background-size: px px;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image:url(图片链接);
+}
+```
+
+4. position上下居中：
+```html
+<div class="outside">
+    <div class="inside"></div>
+</div>
+```
+```css
+.outside {
+    position:relative
+}
+
+.inside {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);  
+}
+
+```
+
+5. 超出文本用省略号显示
+```css
+p{
+    overflow: hidden;/*超出部分隐藏*/
+    text-overflow:ellipsis;/* 超出部分显示省略号 */
+    white-space: nowrap;/*规定段落中的文本不进行换行 */
+    width: 250px;/*需要配合宽度来使用*/
+}
+```
+
+6. 修改placeholder颜色
+```css
+input::placeholder {
+        color: green;
+    }
+```
+
+
+
+
+ 
