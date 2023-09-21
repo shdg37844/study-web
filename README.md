@@ -142,7 +142,30 @@ input::placeholder {
     }
 ```
 
+## DAY38 javascript学习开始
+### 2023/9/20
+今天开始学习js了，每天要多花时间才行啊。
 
+**笔记**
+1. js在页面中的位置（可放在head以及body内）
+浏览器解释html时是按先后顺序的
+进行页面显示初始化的js要放在head里面。而如果是通过事件调用执行的function那么对位置没什么要求的。
 
+2. 注释方式
+单行：Ctrl + /
+多行：Ctrl + Shift + /
 
+3. 变量命名规则
+- 变量名区分大小写。
+- 必须使用字母、下划线`_`   或者美元符 `$`  开始，但是不能用数字开头。
+- 变量名内部可包括：任意多个英文字母、数字、下划线`_`或者美元符`$`，但是不能包括空格和其他标点符号。
+- 不能使用JavaScript关键词与JavaScript保留字。
+
+4. 互动方法：
+document.write、alert、confirm、prompt、window.open、window.close
+
+5. 不同声明 （var、let、const）
+let和const的区别
+常量用const，变量用let
+尽量使用 let 和 const ，不使用 var 。
  
