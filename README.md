@@ -294,14 +294,62 @@ let和const的区别
 1. “实例”是面向对象编程（OOP）中的一个核心概念。当我们有一个类（在许多编程语言中使用 class 关键字定义），我们可以创建其具体的对象，这个对象就被称为类的“实例”。实例化是从类创建对象的过程。这个对象继承了类中定义的所有属性和方法。
 
 
-## DAY72 实例 - 类
+## DAY72 卡片轮播图
 ### 2023/10/24
 1. 卡片轮播图
 
-   如果要在页面显示的项目有4个
+   如果要在页面显示的项目有4个，总共有5个项目
    
-   思路：在前后各克隆3个项目（在开头克隆3、4、5；在结尾克隆1、2、3）
+   思路：在前后各克隆2个项目（在开头克隆3、4；在结尾克隆1、2） ，即为 4 5 1 2 3 4 5 1 2 
 
-   - 处理第一个项目的切换：若点击左边按钮（swiperPrev方法），当nowIndex为3（即当前显示的是第一个项目）时，会先正常切换到前一个项目（即额外添加的最后一个项目），然后在动画完成后迅速切换到原始数组的最后一个项目，并取消动画效果，从而实现无缝的效果。
+    设置默认index为1  
+    `PAGE.data.translateX = -(swiperItemWidth + swiperItemWidth * index);` 
+   - 处理第一个项目的切换：若点击左边按钮（swiperPrev方法），当Index为-1（即克隆4）时，在动画完成后迅速切换到原始的项目4上，并取消动画效果，从而实现无缝的效果。（所以结尾克隆的个数等于页面显示的项目减2；而开头克隆的项目始终是2，即为总项目的最后两个）
   
-   - 处理最后一个项目的切换：若点击右边按钮（在swpierNext方法），当nowIndex为当前最后一个项目时，会先正常切换到下一个项目（即额外添加的第一个项目），然后在动画完成后迅速切换到原始数组的第一个项目，并取消动画效果，从而实现无缝的效果。
+   - 处理最后一个项目的切换：若点击右边按钮（在swpierNext方法），当Index等于swiperItem长度即5的时候，在动画完成后迅速切换到index为0（即开头的克隆5），并取消动画效果，从而实现无缝的效果。
+
+
+## DAY73 事件监听器
+### 2023/10/25
+
+写法一：最基础
+```js
+onEventLister: function (parentNode, action, childClassName, callback) {
+                parentNode.addEventListener(action, function (e) {
+                    e.target.className.indexOf(childClassName) >= 0 && callback(e);
+                })
+            },
+
+```
+
+写法二：综合（用这个也可以解决方法三的问题），即如果点击到childClassName的子元素，也可以定位到childClassName
+```javascript
+ //展开关闭监听器：当点击的元素为childClassName的子元素
+    onEventLister: function (parentNode, action, childClassName, callback) {
+        parentNode.addEventListener(action, function (e) {
+            let element = e.target.closest('.' + childClassName);  //把childClassName变为类选择器
+            if (element) {
+                callback(e);
+            }
+        })
+    },
+
+```
+
+写法三：
+```js
+onEventLister: function (parentNode, action, childClassName, callback) {
+        parentNode.addEventListener(action, function (e) {
+            let elementCheck = e.target;
+
+            // 如果触发事件的元素是一个图片，则考虑它的父元素
+            if (elementCheck.tagName === 'IMG') {
+                elementCheck = elementCheck.parentElement;
+            }
+
+            elementCheck.className.indexOf(childClassName) >= 0 && callback(e);
+
+        })
+    },
+
+```
