@@ -309,7 +309,7 @@ let和const的区别
    - 处理最后一个项目的切换：若点击右边按钮（在swpierNext方法），当Index等于swiperItem长度即5的时候，在动画完成后迅速切换到index为0（即开头的克隆5），并取消动画效果，从而实现无缝的效果。
 
 
-## DAY73 事件监听器
+## DAY73 事件监听器 
 ### 2023/10/25
 
 写法一：最基础
@@ -353,3 +353,23 @@ onEventLister: function (parentNode, action, childClassName, callback) {
     },
 
 ```
+
+## DAY74 箭头函数、this、requestAnimationFrame
+### 2023/10/26
+1. 使用箭头函数使得this的上下文被正确地保留了，可以直接访问类或对象的其他方法和属性。
+
+   箭头函数的主要特点是它不绑定自己的this。这意味着，在箭头函数内部，this的值与箭头函数定义时的外部作用域中的this值相同。
+
+2. requestAnimationFrame 是一个浏览器提供的API，用于在下一次重绘之前执行一段代码。它主要用于动画和游戏的开发，因为它可以确保代码在屏幕刷新的最佳时机执行，从而提供流畅的动画效果。
+
+
+## DAY75 classList
+### 2023/10/27
+classList 是一个DOM元素的属性，返回一个 DOMTokenList 对象。这个对象代表了元素的类名列表，并提供了一系列方法来操作这些类名。
+
+classList的常用方法：
+- add(类名1, 类名2, ...)
+- remove(类名1, 类名2, ...)
+- contains(类名)
+- toggle(类名, [force])
+- replace(旧类名, 新类名)
