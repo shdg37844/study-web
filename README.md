@@ -373,3 +373,105 @@ classList的常用方法：
 - contains(类名)
 - toggle(类名, [force])
 - replace(旧类名, 新类名)
+
+
+## DAY76 构造函数中的this与let/const/var
+### 2023/10/28
+用法：使用 this 来初始化新对象的属性和方法； let/const/var 用来创建在函数内部使用的局部变量。
+
+**this**：
+- 当在 JavaScript 中使用构造函数创建一个新的对象时，this 关键字引用的是正在被创建的那个对象。它在构造函数中用于引用并初始化新对象的属性和方法。
+- 它将存活于新对象的整个生命周期。
+- 通过 this 定义的属性和方法可以通过对象实例在外部访问，除非使用了其他封装机制。
+
+**let/const/var**：
+- 用于在函数内部或块作用域内声明局部变量（var: 函数作用域； let 和 const: 块作用域）
+- 它们创建的是变量，不是对象的属性或方法。
+- 变量存在于其作用域的生命周期中。这些变量只能在其定义的作用域内访问。
+
+## DAY79 node.js
+### 2023/10/31
+1. path module：
+   
+   basename 和 dirname：可以直接获得，也可以通过path module获得
+
+2. fs module：创建文件夹、创建文件、重命名文件、给文件添加内容、输出文件内容...
+3. os module
+4. url module
+
+## DAY80 node.js gulp
+### 2023/11/1
+1. **gulp3**及之前的版本的任务是通过 gulp.task() 方法直接注册的，这意味着一旦在 gulpfile.js 中使用 gulp.task() 定义了任务，Gulp 就知道这些任务的存在，可以直接在命令行中调用它们（不用exports）。
+
+    **gulp4** 是通过常规的 JavaScript 函数定义，并通过 exports 关键字导出（从而可以在命令行使用运行）。
+
+
+## DAY82 node.js webpack
+### 2023/11/3
+在 webpack 5 中，对于资源文件（例如图片），不再需要 file-loader 和 url-loader 这样的 loader。因为 webpack 5 引入了一个内置的资源类型 asset，可以替代这些 loader。
+
+asset 类型提供了两种模式：
+- asset/resource（替代 file-loader）
+- asset/inline（替代 url-loader）
+
+在webpack.config.js中：
+```js
+{
+  test: /\.(png|svg|jpg|gif)$/,
+  type: 'asset/resource',  //替代 file-loader
+  generator: {
+    filename: 'assets/images/[name][hash][ext][query]' // 定义输出的文件名和路径
+  }
+},
+```
+
+## DAY83 数组方法
+### 2023/11/4
+有返回值：格式用return
+1. **filter**  【筛选】不会改变原数组
+
+2. **map**  
+
+3. **find**  返回第一个true值 
+
+4. **some**  检查是否有值满足条件；返回true或者false
+
+5. **every**  检查是否所有值都满足条件；返回true或者false
+
+6. **reduce**   会改变原数组
+
+7. **includes**  【特殊：没有function，用的是argument】用在一些简单的含有数字的数组里，检查某个数字是否在数组里，返回true或者false
+>  parameter和argument的不同：
+> - **Parameter** is the variable in the declaration of the function.
+> - **Argument** is the actual value of this variable that gets passed to the function.
+
+
+没有返回值：
+1. **forEach**  
+
+
+## DAY84 Node.js
+### 2023/11/5
+1. node.js与浏览器的命令有一些是不同的
+
+2. 清除浏览器缓存或使用强制刷新（通常是 Ctrl+F5 或 Cmd+Shift+R）
+
+3. **Express**框架和**Gulp**、**Webpack**这些工具服务于JavaScript应用开发中的不同目的和阶段，它们之间是互补关系。
+
+4. **Axios** 是一个工具，用于前端与**API**之间的通信，通过发送HTTP请求来获取或发送数据。API 是后端服务，它定义了如何通过HTTP请求接收和发送数据。两者共同协作，使得前端和后端能够进行数据交换。
+   - 例如，如果你正在构建一个需要从第三方服务获取天气信息的Web应用程序，你可以使用Axios 发送一个GET请求到该服务的API，API 处理你的请求并将天气数据以JSON格式返回给你的应用程序。
+
+5. **dotenv** 是一个非常流行的Node.js模块，它允许你将环境变量从一个.env文件加载到process.env中。环境变量是在操作系统级别或者在执行环境级别设置的动态命名值，通常用于存储配置值，比如数据库连接信息或外部服务的API密钥。
+
+6. **require** 和 **import**
+    - require 是CommonJS模块规范的一部分，最初是为了Node.js被设计的。
+    - import 是ES6（也称为ES2015）的模块规范的一部分，它是JavaScript的一个官方标准。可以被现代浏览器 以及 使用了特定转译步骤（如Babel）的Node.js环境支持。
+
+
+## DAY86 端口监听 / 实例 vs 包含配置的对象
+### 2023/11/7
+在 Node.js 中，模块系统遵循 CommonJS 规范，允许你通过 module.exports 导出模块，并通过 require 函数导入模块。
+
+注意在导出的时候（以knex为例）：
+- **一个只包含配置的对象**：仅仅包含了连接数据库所需的参数，而不包括用于创建连接、执行查询和处理数据库交互的逻辑。
+- **实例化一个对象**：这个实例拥有类中定义的属性和方法。比如：如何构建和执行 SQL 查询，它封装了数据库连接和操作的逻辑，而不仅仅是数据库连接的参数。
