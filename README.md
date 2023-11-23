@@ -185,7 +185,7 @@ let和const的区别
 
 **<2>数组、链表、跳表**
 
-![Alt text](image.png)
+![Alt text](/images/image.png)
 
 
 ## DAY47 算法
@@ -207,7 +207,7 @@ let和const的区别
 
 **<4>常见的时间复杂度**
 
-![Alt text](cbfe0c6c29aec68338d9cff95cbfc38.png)
+![Alt text](/images/cbfe0c6c29aec68338d9cff95cbfc38.png)
 
 排序的时间复杂度是O(NlogN)
 
